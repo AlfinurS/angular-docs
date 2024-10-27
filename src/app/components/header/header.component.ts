@@ -12,7 +12,9 @@ import {
   RouterLink,
   ActivatedRoute,
 } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 /* import { AuthService } from '../../auth/auth.service'; */
+import { AuthModalComponent } from '../../components/auth-modal/auth-modal.component';
 
 @Component({
   selector: 'app-header',
@@ -28,6 +30,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isAuth: boolean = false;
 
   constructor(
+    private readonly dialog: MatDialog,
     //private authService: AuthService,
     private router: Router,
     private readonly cdr: ChangeDetectorRef
@@ -44,6 +47,19 @@ export class HeaderComponent implements OnInit, OnDestroy {
         }
       })
     );
+  }
+
+  showLoginModal() {
+    const dialogRef = this.dialog.open(AuthModalComponent, {
+      autoFocus: 'none',
+    });
+    this.subscriptions.push(
+      dialogRef.afterClosed().subscribe((res) => {
+        if (res) {
+        }
+      })
+    );
+    this.cdr.detectChanges();
   }
 
   handleLocation(url: string): void {

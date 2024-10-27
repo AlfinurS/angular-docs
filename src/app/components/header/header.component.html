@@ -16,8 +16,7 @@
 
     @if (!isAuth) {
     <div class="header__btn-group">
-      <button class="btn btn-plain">Войти</button
-      ><!-- @click="showLoginModal()" -->
+      <button class="btn btn-plain" (click)="showLoginModal()">Войти</button>
       <button class="btn btn-primary">
         <!-- @click="showRegistrationModal()" -->
         Регистрация
