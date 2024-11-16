@@ -1,5 +1,5 @@
 <!-- Шапка -->
-<h2 class="modal__title" mat-dialog-title>Авторизация</h2>
+<h2 class="modal__title" mat-dialog-title>Регистрация</h2>
 
 <!-- Основной контент -->
 <mat-dialog-content>
@@ -36,6 +36,23 @@
         </span>
         }
       </div>
+
+      <div class="modal__field-wrapper">
+        <label for="repeatPassword">Подтвердите пароль</label>
+        <input
+          pInputText
+          placeholder="Пароль"
+          formControlName="repeatPassword"
+          id="repeatPassword"
+          type="repeatPassword"
+        />
+        @if(form.controls.repeatPassword.errors &&
+        form.controls.repeatPassword.dirty) {
+        <span class="modal__field-error">
+          {{ form.controls.repeatPassword.errors | errorFormText }}
+        </span>
+        }
+      </div>
     </form>
   </div>
 </mat-dialog-content>
@@ -43,13 +60,12 @@
 <!-- Блок кнопок -->
 <mat-dialog-actions>
   <div class="modal__actions">
-    <button class="btn btn-plain" (click)="close()">Отмена</button>
     <button
-      class="btn btn-primary"
+      class="btn btn-primary modal__btn"
       (click)="submit()"
       [disabled]="form.invalid || loading"
     >
-      Войти
+      Зарегистрироватья
     </button>
   </div>
 </mat-dialog-actions>

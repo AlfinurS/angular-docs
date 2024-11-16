@@ -64,15 +64,6 @@
     margin-top: 16px;
     margin-bottom: 12px;
   }
-  &__search-item-content {
-    background-color: white;
-    border-radius: 8px;
-    //border: 1px solid var(--disabled);
-  }
-  &__search-content-wtapper {
-    //border-bottom: 1px solid var(--disabled);
-  }
-
   &__list-content {
     display: flex;
     flex-direction: column;
@@ -304,9 +295,6 @@
 
       box-sizing: border-box;
     }
-  }
-  &__search-content-wtapper {
-    //border-bottom: 1px solid var(--disabled);
   }
   &__search-item-doc-wrapper {
     border-bottom: 1px solid var(--disabled);
@@ -576,4 +564,7 @@
     align-items: center;
     gap: 16px;
   }
+}
+::ng-deep .p-fileupload-choose {
+  display: none;
 }

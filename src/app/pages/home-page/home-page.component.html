@@ -1,6 +1,44 @@
 <div class="app-container home">
   <div class="home__form">
-    123
+    <p-fileUpload
+      #fileUploadRef
+      [customUpload]="true"
+      [multiple]="isMultipleUploading"
+      [showUploadButton]="false"
+      [showCancelButton]="false"
+      maxFileSize="1000000"
+    >
+      <ng-template pTemplate="content">
+        <div *ngIf="uploadedFiles.length === 0" class="home__upload">
+          <div class="home__upload-content">
+            <img alt="logo" src="../assets/img/upload.png" />
+            <button
+              class="btn btn-primary home__upload-btn"
+              (click)="openFileDialog()"
+              pButton
+            >
+              Выберите файл для загрузки
+            </button>
+            <span class="home__upload-rules">{{ uploadRulesText }}</span>
+          </div>
+        </div>
+        <!-- Отображение списка загруженных файлов -->
+        <ul *ngIf="uploadedFiles.length">
+          <li *ngFor="let file of uploadedFiles">
+            {{ file.name }} - {{ file.size }} bytes
+          </li>
+        </ul>
+      </ng-template>
+    </p-fileUpload>
+
+    <input
+      #fileInput
+      type="file"
+      [multiple]="isMultipleUploading"
+      (change)="handleFileInput($event)"
+      style="display: none"
+    />
+
     <!-- <QUploader
       v-show="filesData.length === 0"
       ref="uploaderRef"

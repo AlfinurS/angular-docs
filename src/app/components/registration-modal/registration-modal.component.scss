@@ -1,10 +1,13 @@
 .modal {
   &__actions {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     gap: 20px;
     padding-left: 16px;
     padding-right: 16px;
+    width: 100%;
+  }
+  &__btn {
     width: 100%;
   }
   &__title {

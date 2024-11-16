@@ -12,4 +12,12 @@ export class AuthApiService {
   getUser(params: object): Observable<UserLoginResponse> {
     return this.http.post<UserLoginResponse>('login/', params);
   }
+
+  userRegistration(params: object): Observable<any> {
+    return this.http.post<any>('/register/', params);
+  }
+
+  uploadFiles(formData: FormData): Observable<any> {
+    return this.http.post<any>('documents/upload/', formData);
+  }
 }

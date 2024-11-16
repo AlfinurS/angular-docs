@@ -15,6 +15,7 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 /* import { AuthService } from '../../auth/auth.service'; */
 import { AuthModalComponent } from '../../components/auth-modal/auth-modal.component';
+import { RegistrationModalComponent } from '../../components/registration-modal/registration-modal.component';
 
 @Component({
   selector: 'app-header',
@@ -51,6 +52,19 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   showLoginModal() {
     const dialogRef = this.dialog.open(AuthModalComponent, {
+      autoFocus: 'none',
+    });
+    this.subscriptions.push(
+      dialogRef.afterClosed().subscribe((res) => {
+        if (res) {
+        }
+      })
+    );
+    this.cdr.detectChanges();
+  }
+
+  showRegistrationModal() {
+    const dialogRef = this.dialog.open(RegistrationModalComponent, {
       autoFocus: 'none',
     });
     this.subscriptions.push(

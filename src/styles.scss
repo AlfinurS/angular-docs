@@ -97,8 +97,8 @@ html {
 .btn-primary {
   border: 1px solid;
   font-weight: 400;
-  color: var(--primary);
-  background-color: var(--primary-btn);
+  color: var(--typography-white);
+  background-color: var(--primary-hover);
   &:hover {
     color: var(--typography-white);
     background-color: var(--primary-hover);
@@ -116,9 +116,9 @@ html {
 .btn-plain {
   border: 1px solid;
   font-weight: 400;
-  color: var(--typography-1);
+  color: var(--primary);
   background-color: transparent;
-  border-color: transparent;
+  border-color: var(--primary);
   &:hover {
     color: var(--primary);
     background-color: var(--primary-btn);
