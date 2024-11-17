@@ -104,9 +104,17 @@ export interface IDocumentTypes {
   [key: string]: EDocumentTypes;
 }
 
-export interface IDocumentKey {
+export interface IUpload {
   id: number;
-  user_id: number;
-  document_type: string;
-  contract_number: string;
+  user_id: number | null;
+  filename: string;
+  page_number: number;
+  success: boolean;
+  error: string;
+  document_types: [];
+  order_numbers: [];
+  additional_info: {};
+}
+export interface IUploadResponse {
+  pages: IUpload[];
 }

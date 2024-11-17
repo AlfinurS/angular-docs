@@ -16,8 +16,4 @@ export class AuthApiService {
   userRegistration(params: object): Observable<any> {
     return this.http.post<any>('/register/', params);
   }
-
-  uploadFiles(formData: FormData): Observable<any> {
-    return this.http.post<any>('documents/upload/', formData);
-  }
 }

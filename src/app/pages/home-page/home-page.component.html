@@ -23,11 +23,16 @@
           </div>
         </div>
         <!-- Отображение списка загруженных файлов -->
-        <ul *ngIf="uploadedFiles.length">
-          <li *ngFor="let file of uploadedFiles">
-            {{ file.name }} - {{ file.size }} bytes
-          </li>
-        </ul>
+        <div *ngIf="uploadedFiles.length">
+          <div class="home__uploading">
+            <div class="home__uploading-head">Идет анализ файлов:</div>
+          </div>
+          <div class="home__uploading-file" *ngFor="let file of uploadedFiles">
+            <div class="home__uploading-name">
+              <span>{{ file.filename }}</span>
+            </div>
+          </div>
+        </div>
       </ng-template>
     </p-fileUpload>
 
@@ -39,32 +44,28 @@
       style="display: none"
     />
 
-    <!-- <QUploader
-      v-show="filesData.length === 0"
-      ref="uploaderRef"
-      v-model="filesData"
-      :auto-upload="false"
-      @added="onFilesAdded"
-      :multiple="isMultipleUploading"
-      :max-files="settings.uploadMaxOnTimeCount"
-    >
-      <template v-slot:header></template>
-      <template v-slot:list="scope">
-        <div class="home__upload">
-          <div class="home__upload-content">
-            <img alt="logo" src="../assets/img/upload.png" />
-            <button
-              class="btn btn-primary home__upload-btn"
-              @click="scope.pickFiles"
-            >
-              <QUploaderAddTrigger />
-              Выберите файл для загрузки
-            </button>
-            <span class="home__upload-rules">{{ uploadRulesText }}</span>
-          </div>
+    <div *ngIf="uploadedFiles.length">
+      <div class="home__uploading">
+        <div class="home__uploading-head">Идет анализ файлов:</div>
+      </div>
+      <div class="home__uploading-file" *ngFor="let file of uploadedFiles">
+        <div class="home__uploading-name">
+          <span>{{ file.filename }}</span>
         </div>
-      </template>
-    </QUploader> -->
+      </div>
+      <!-- <div class="progress-bar">
+        <div
+          class="progress-bar__inner"
+          :style="{
+            width: state.progress + '%',
+          }"
+        ></div>
+      </div>
+      <div class="progress-bar__counter">
+        {{ state.finishedRequsts }}&nbsp;/&nbsp;{{ filesData.length }}
+      </div> -->
+    </div>
+
     <!-- <div v-show="filesData.length !== 0">
       <div class="home__uploading">
         <div class="home__uploading-head">Идет анализ файлов:</div>

@@ -8,8 +8,9 @@ import {
   inject,
 } from '@angular/core';
 import { FileUploadModule, FileSelectEvent } from 'primeng/fileupload';
-import { AuthApiService } from '../../api/auth.api.service';
+import { HomeApiService } from '../../api/home.api.service';
 import { Subscription, catchError, EMPTY } from 'rxjs';
+import type { IUploadResponse, IUpload } from '../../types';
 
 @Component({
   selector: 'app-home-page',
@@ -21,12 +22,12 @@ import { Subscription, catchError, EMPTY } from 'rxjs';
   providers: [MessageService],
 })
 export class HomePageComponent {
-  uploadedFiles: File[] = [];
+  uploadedFiles: IUpload[] = [];
   maxFilesCount = 5;
   uploadRulesText =
     'Пожалуйста, выберите файл для загрузки (максимум 5 файлов за раз)';
   isMultipleUploading = true;
-  readonly authApiService = inject(AuthApiService);
+  readonly homeApiService = inject(HomeApiService);
   loading: boolean = false;
   subscriptions: Subscription[] = [];
 
@@ -62,9 +63,12 @@ export class HomePageComponent {
     formData.append('files', file);
 
     this.loading = true;
-    this.authApiService.uploadFiles(formData).subscribe({
-      next: (response) => {
+    this.homeApiService.uploadFiles(formData).subscribe({
+      next: (response: IUploadResponse) => {
         this.loading = false;
+        response.pages.forEach((page) => {
+          this.uploadedFiles.push(page);
+        });
         this.messageService.add({
           severity: 'success',
           summary: 'Файл загружен',
